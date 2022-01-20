@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=104 lang=javascript
- *
- * [104] 二叉树的最大深度
- */
-
-// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -15,29 +8,28 @@
  */
 /**
  * @param {TreeNode} root
- * @return {number}
+ * @return {number[][]}
  */
-var maxDepth = function(root) {
-  if(!root) return 0;
-  const temp=Math.max(maxDepth(root.left),maxDepth(root.right));
-  return temp+1;
-};
-// @lc code=end
 
+`
+给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。
+ （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+`
+ var levelOrderBottom = function(root) {
 
-//BFS
- var maxDepth = function(root) {
-  if(!root) return 0
-  let q=[root]
-  let ans=0
+  if(!root) return [];
+  let q=[root];
+  let ans=[],level=0;
   while(q.length){
-      ans++
+      ans[level]=[];
       let levelNum=q.length
       while(levelNum--){
           let node=q.shift()
+          ans[level].push(node.val)
           node.left&&q.push(node.left)
           node.right&&q.push(node.right)
       }
+      level++
   }
-  return ans
+  return ans.reverse()
 };
