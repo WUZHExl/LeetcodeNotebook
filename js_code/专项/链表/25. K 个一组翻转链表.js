@@ -23,6 +23,52 @@ k 是一个正整数，它的值小于或等于链表的长度。
  * @param {number} k
  * @return {ListNode}
  */
+
+`
+我们需要把链表节点按照 k 个一组分组，所以可以使用一个指针 head 依次指向每组的头节点。
+这个指针每次向前移动 k 步，直至链表结尾。对于每个分组，我们先判断它的长度是否大于等于 k。若是，我们就翻转这部分链表，否则不需要翻转
+对于一个子链表，除了翻转其本身之外，还需要将子链表的头部与上一个子链表连接，以及子链表的尾部与下一个子链表连接
+
+`
+//迭代
+const myReverse = (head, tail) => {
+  let prev = tail.next;
+  let p = head;
+  while (prev !== tail) {
+      const nex = p.next;
+      p.next = prev;
+      prev = p;
+      p = nex;
+  }
+  return [tail, head];
+}
+var reverseKGroup = function(head, k) {
+  const hair = new ListNode(0);
+  hair.next = head;
+  let pre = hair;
+
+  while (head) {
+      let tail = pre;
+      // 查看剩余部分长度是否大于等于 k
+      for (let i = 0; i < k; ++i) {
+          tail = tail.next;
+          if (!tail) {
+              return hair.next;
+          }
+      }
+      const nex = tail.next;
+      [head, tail] = myReverse(head, tail);
+      // 把子链表重新接回原链表
+      pre.next = head;
+      tail.next = nex;
+      pre = tail;
+      head = tail.next;
+  }
+  return hair.next;
+};
+
+
+//递归
  var reverseKGroup = function(head, k) {
 
     if(!head) return head
@@ -53,6 +99,7 @@ k 是一个正整数，它的值小于或等于链表的长度。
 
     // 反转前 k 个元素
     let newHead=reverse(a,b);
+    //翻转后b是这一段的头节点，a是这一段的尾结点
     a.next=reverseKGroup(b,k)
     return newHead
 

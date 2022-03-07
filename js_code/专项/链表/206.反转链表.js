@@ -18,18 +18,18 @@
  */
 
 //迭代
-// var reverseList = function(head) {
-//     let pre=null;
-//     let curr=head; //当前节点
-//     while(curr)
-//     {
-//       const temp=curr.next; //保存当前节点此时的next
-//       curr.next=pre; //把当前节点的next改为前一个节点
-//       pre=curr;     //迭代
-//       curr=temp;
-//     }
-//     return pre; //pre最后存储的就是最后头结点
-// };
+var reverseList = function(head) {
+    let pre=null;
+    let curr=head; //当前节点
+    while(curr)
+    {
+      const temp=curr.next; //保存当前节点此时的next
+      curr.next=pre; //把当前节点的next改为前一个节点
+      pre=curr;     //迭代
+      curr=temp;
+    }
+    return pre; //pre最后存储的就是最后头结点
+};
 
 //递归
 var reverseList = function(head) {
