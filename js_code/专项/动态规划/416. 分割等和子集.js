@@ -36,3 +36,27 @@
 
   return dp[n-1][target]
 };
+
+//滚动数组
+//dp[i] 表示容量为i的背包，所背的物品价值可以最大为dp[i]
+// 物品遍历的for循环放在外层，遍历背包的for循环放在内层，且内层for循环倒序遍历
+
+//在这里数组长度表示物品数量（物品《=》数组）
+//子集里的元素大小表示 重量
+var canPartition = function(nums) {
+
+    let sum=nums.reduce((s,current)=>s+current,0)
+    if(sum%2!==0) return false
+    let n=nums.length
+    let target=sum/2
+
+    //dp[i]表示容量为i的包，能放的东西价值最大为多少
+    let dp=new Array(target+1).fill(0)
+    for(let i=0;i<n;i++){
+        for(let j=target;j>=nums[i];j--){
+            dp[j]=Math.max(dp[j],dp[j-nums[i]]+nums[i])
+        }
+    }
+    return dp[target]===target
+
+};
