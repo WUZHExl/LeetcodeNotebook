@@ -22,3 +22,18 @@
 var isAnagram = function(s,t){
   return s.split('').sort().join('')===t.split('').sort().join('') ? true : false;
 }
+
+//若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词
+var isAnagram = function(s, t) {
+
+  if(s.length!==t.length) return false
+  let need={}
+  for(let i of s){
+      need[i]=(need[i]||0)+1
+  }
+  for(let i of t){
+      if(!need[i]) return false
+      need[i]=need[i]-1
+  }
+  return true
+};

@@ -41,3 +41,25 @@
     return Math.max(f.get(root)||0,g.get(root)||0)
 
 };
+
+
+const rob=root=>{
+
+
+  const postorder=node=>{
+    //分别保存[不偷，偷]当前节点的结果
+    if(!node) return [0,0];
+    //
+    const left=postorder(node.left)
+    const right=postorder(node.right)
+    // 不偷当前节点，左右子节点都可以偷或不偷，取最大值
+    const DoNot=Math.max(left[0],left[1])+Math.max(right[0],right[1])
+
+    const Do=node.val+left[0]+right[0]
+
+    return [DoNot,Do]
+  }
+
+  let res=postorder(root)
+  return Math.max(...res)
+}

@@ -1,3 +1,5 @@
+
+//在一段时间内，时间多次触发，只有一次生效
 function throttle(fn,delay){
 
   let last =Date.now;
@@ -19,6 +21,7 @@ const throttleTask =throttle(task, 1000)
 throttleTask()
 
 
+//事件触发后n秒执行回调，在n秒内又被调用，重新计时
 function debounce(fn,delay){
   let timer=null;
 

@@ -2,6 +2,11 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+
+`
+给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
+
+`
  var permuteUnique = function(nums) {
 
   let result=[],path=[]
@@ -12,7 +17,7 @@
           return
       }
 
-      let flag=[]
+      let flag=[]  //要求有重复数字的序列，求不重复排列
       for(let i=0;i<nums.length;i++){
 
           if(used[i]) continue;
