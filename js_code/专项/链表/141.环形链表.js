@@ -47,6 +47,8 @@ var hasCycle = function(head) {
 // @lc code=end
 
 
+
+//判断环形链表环的起点
 /**
  * @param {ListNode} head
  * @return {ListNode}

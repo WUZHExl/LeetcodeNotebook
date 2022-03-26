@@ -5,6 +5,8 @@
 
 
 //动态规划
+//只有一次买入卖出的机会
+//所以第一次卖出的时候，是没有基础利润的
  var maxProfit = function(prices) {
 
   let dp=new Array(prices.length).fill().map(()=>new Array(2).fill(0))
