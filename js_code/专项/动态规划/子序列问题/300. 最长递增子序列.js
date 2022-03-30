@@ -11,7 +11,7 @@
 //可以不连续
  var lengthOfLIS = function(nums) {
 
-  //dp[i]表示以nums[i]为结尾的最长递增子序列
+  //dp[i]表示以nums[i]为结尾的最长递增子序列的长度
   let dp=new Array(nums.length).fill(1)
   for(let i=1;i<nums.length;i++){
       for(let j=0;j<i;j++){
