@@ -19,6 +19,8 @@
  * @param {number} val
  * @return {TreeNode}
  */
+
+//迭代
  var searchBST = function(root, val) {
 
   while(root!==null){
@@ -28,4 +30,14 @@
   }
   return null
 
+};
+
+
+//递归
+var searchBST = function(root, val) {
+
+  if(!root||root.val===val) return root
+  if(root.val<val) return searchBST(root.right,val)
+  else return searchBST(root.left,val)
+  
 };

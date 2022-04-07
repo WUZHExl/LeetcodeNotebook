@@ -52,3 +52,19 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 // @lc code=end
 
+var lowestCommonAncestor = function(root, p, q) {
+
+  const dfs=(root,p,q)=>{
+
+      // 遇到null，返回null 没有LCA
+      // 遇到p或q，直接返回当前节点
+      if(!root||root===p||root===q) return root
+      let left=dfs(root.left,p,q)
+      let right=dfs(root.right,p,q)
+      // 根据递归的结果，决定谁是LCA
+      if(left===null) return right
+      if(right===null) return left
+      return root
+  }
+  return dfs(root,p,q)
+};

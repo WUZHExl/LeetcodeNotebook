@@ -34,3 +34,30 @@ function debounce(fn,delay){
     timer = setTimeout(()=>fn.apply(this),delay)
   }
 }
+
+
+function debounce(fn,time){
+  let timer=null;
+  return function(...args){
+    if(timer){
+      clearTimeout(timer)
+      timer=null
+    }
+    timer=setTimeout(()=>{
+      fn.apply(this,args)
+    },time)
+  }
+}
+
+
+function throttle(fn,time){
+
+  let last=Date.now()
+  return (...args)=>{
+    let now=Date.now()
+    if(now-last>=time){
+      last=Date.now()
+      fn.apply(this,args)
+    }
+  }
+}

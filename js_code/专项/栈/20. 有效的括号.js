@@ -20,6 +20,32 @@
  */
  var isValid = function(s) {
 
+  let stack=[]
+  let map={'}':'{',')':'(',"]":'['}
+  for(let c of s){
+
+      if(c==='{'||c==='['||c==='('){
+          stack.push(c)
+      }
+
+      if(c==='}'||c===']'||c===')'){
+          let temp=map[c]
+          if(stack.length===0||temp!==stack[stack.length-1]){
+              return false
+          }
+          stack.pop()
+      }
+  }
+  if(stack.length!==0) return false
+  return true
+
+};
+
+
+
+
+ var isValid = function(s) {
+
   let left=[] //栈
   const leftOf=c=>{
     if(c==="}") return "{"
