@@ -5,30 +5,8 @@
 
 判断你是否能够到达最后一个下标。
 
+
 `
-
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
-// 动态规划
- var canJump = function(nums) {
-    let dp=new Array(nums.length).fill(false)
-    dp[0]=true                  //第一项能到达
-    for (let i=1; i<nums.length; i++){
-      for(let j=0;j<i;j++){
-         //当前位置j能达到，并且当前位置j加上能到达的位置如果超过了i，
-         //那dp[i]更新为ture，便是i位置也可以到达
-        if(dp[j]&&nums[j]+j>=i){
-          dp[i]=true
-          break;
-        }
-      }
-    }
-    return dp[nums.length-1] 
-};
-
-
 // 贪心
 `
 贪心算法局部最优解：每次取最大跳跃步数（取最大覆盖范围），整体最优解：
